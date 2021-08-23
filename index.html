@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Get the styles for the page-->
+		<link rel="stylesheet" href="./styles.css">
+		<!-- Special style element to control the animation -->
+		<style id="animationStyle">
+			@keyframes myAnim {
+				0%, 100% {
+					transform: translateX(43.66%);
+				}
+				70% {
+					transform: translateX(0px);
+				}
+			}
+		</style>
+		<title>SyncRow</title>
+	</head>
+	<body>
+		<!-- Structure the sections of inputs/pictures we need to have in the HTML -->
+		<div id="app">
+			<div class="title">SyncRow</div>
+			<div class="settings">
+				<div class="inputHolder">
+					<input type="number" id="cadence" alt="Cadence" placeholder="Cadence">
+					<div class="units">Strokes/Min.</div>
+				</div>
+				<div class="inputHolder">
+					<input type="number" id="driveTime" alt="Drive Time" placeholder="Drive Time">
+					<div class="units">Sec.</div>
+				</div>
+				<div class="inputHolder">
+					<input type="number" id="recoverTime" alt="Recovery Time" placeholder="Recovery Time">
+					<div class="units">Sec.</div>
+				</div>
+				<div class="buttonHolder">
+					<button id="startStop">Start</button>
+					<button id="reset">Reset</button>
+				</div>
+			</div>
+			<div class="animation">
+				<div class="rower default">
+					<img src="./images/rower default.png" id="rowerDefault">
+					<img src="./images/rower catch.png" id="rowerCatch">
+					<img src="./images/rower finish.png" id="rowerFinish">
+				</div>
+				<div class="machine">
+					<img src="./images/machine.png">
+				</div>
+				<audio id="soundCountdown">
+					<source src="./sounds/Countdown.wav" type="audio/wav">
+				</audio>
+				<audio id="soundCatch">
+					<source src="./sounds/catch.wav" type="audio/wav">
+				</audio>
+				<audio id="soundFinish">
+					<source src="./sounds/finish.wav" type="audio/wav">
+				</audio>
+			</div>
+		</div>
+		<!-- Once the elements are on the page, run the javascript to interact with all of it -->
+		<script src="./app.js"></script>
+	</body>
+</html>

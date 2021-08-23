@@ -1,0 +1,167 @@
+/*********************/
+/* Web page settings */
+/*********************/
+html, body {
+	padding: 0;
+	margin: 0;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
+
+
+
+/**************/
+/* App Layout */
+/**************/
+/* "Normal" layout in a column" */
+#app {
+	height: 100vh;
+	width: 100vw;
+
+	display: grid;
+	grid-template:
+		"title"		auto
+		"settings"	1fr
+		"animation"	1fr /
+		1fr;
+	
+	gap: 1rem;
+	justify-content: center;
+}
+
+/* Special horizontal layout when the screen is too short */
+@media (max-height: 400px){
+	#app {
+		grid-template: 
+			"title		title" 		auto
+			"settings	animation" 	1fr /
+			1fr			1fr;
+		gap: 0;
+	}
+}
+
+
+
+/****************/
+/* Title Layout */
+/****************/
+.title {
+	grid-area: title;
+	text-align: center;
+	font-size: 4rem;
+	margin-top: 1rem;
+}
+
+
+
+/*******************/
+/* Settings layout */
+/*******************/
+.settings {
+	grid-area: settings;
+	font-size: 1rem;
+	align-self: center;
+	--inputFontSize: 1.3rem;
+}
+
+.inputHolder {
+	display: grid;
+	grid-template:
+		'.	input		units' auto /
+		1fr	max-content	1fr;
+	gap: 0.2rem;
+	margin-bottom: 1rem;
+}
+
+.settings input {
+	grid-area: input;
+	font-size: var(--inputFontSize);
+	width: 14ch;
+	text-align: center;
+}
+
+.settings .units {
+	grid-area: units;
+	align-self: center;
+	max-width: 8ch;
+	word-wrap: break-word;
+}
+
+.buttonHolder {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, max-content);
+	gap: 1rem;
+	justify-content: center;
+}
+
+.buttonHolder button {
+	font-size: var(--inputFontSize);
+	width: 8ch;
+	cursor: pointer;
+}
+
+
+
+/***********************************/
+/* General CSS To Enable Animation */
+/***********************************/
+.animation {
+	grid-area: animation;
+	position: relative;
+	display: grid;
+	align-content: center;
+}
+
+.animation > * {
+	display: grid;
+	width: max-content;
+	justify-self: center;
+	align-self: center;
+	grid-row: 1;
+	grid-column: 1;
+}
+
+.animation img {
+	max-height: 40vh;
+	max-width: 95vw;
+	justify-self: center;
+}
+
+.rower {
+	--iterationDuration: 3s;
+}
+
+.rower:not(.animating){
+	transform: translateX(21.8%);
+}
+
+.rower img {
+	display: none;
+}
+
+.rower:not(.catch, .finish) #rowerDefault {
+	display: unset;
+}
+
+.rower.catch #rowerCatch {
+	display: unset;
+}
+
+.rower.finish #rowerFinish {
+	display: unset;
+}
+
+
+
+/**********************/
+/* Animation Settings */
+/**********************/
+.rower.animating {
+	animation-duration: var(--iterationDuration);
+	animation-timing-function: linear;
+	animation-fill-mode: both;
+	animation-iteration-count: infinite;
+	animation-name: myAnim;
+}
